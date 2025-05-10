@@ -1,0 +1,35 @@
+flowchart TD
+    A(["Inicio"]) --> B["Definir_dados_materiais_coeficientes"]
+    B --> C["Definir_recomendacoes_descartes_reutilizacao"]
+    C --> D["Exibir_cabecalho"]
+    D --> E["Definir_tipo_Residencial"]
+    E --> F["Solicitar_area_ao_usuario"]
+    F --> G{"Area_maior_que_0?"}
+    G -- Sim --> H["Solicitar_materiais_ao_usuario"]
+    G -- Nao --> F
+    H --> I["Dividir_entrada_em_lista_de_materiais"]
+    I --> J["Inicializar_total_residuos_0"]
+    J --> K["Inicializar_total_co2_0"]
+    K --> L["Para_cada_material_em_lista"]
+    L --> M{"Material_existe_em_dados_materiais?"} & V["Adicionar_totais_ao_relatorio"]
+    M -- Sim --> N["Obter_coeficiente_e_emissao"]
+    N --> O["Calcular_quantidade_residuo"]
+    O --> P["Calcular_impacto_co2"]
+    P --> Q["Obter_recomendacoes"]
+    Q --> R["Somar_ao_total_residuos"]
+    R --> S["Somar_ao_total_co2"]
+    S --> T["Adicionar_ao_relatorio"]
+    T --> L
+    M -- Nao --> U["Adicionar_aviso_ao_relatorio"]
+    U --> L
+    V --> W["Exibir_relatorio"]
+    W --> X["Deseja_salvar_s_n"]
+    X --> Y{"Resposta_igual_s"}
+    Y -- Sim --> Z["Salvar_em_arquivo_txt"]
+    Z --> AA["Exibir_relatorio_salvo"]
+    Y -- Nao --> AB["Exibir_relatorio_nao_salvo"]
+    AA --> Fim["Finalizar"]
+    AB --> Fim
+
+
+
